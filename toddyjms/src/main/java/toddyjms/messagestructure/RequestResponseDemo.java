@@ -21,15 +21,18 @@ public class RequestResponseDemo {
 			TextMessage message = jmsContext.createTextMessage("Toddy é o melhor");
 
 			JMSProducer producer = jmsContext.createProducer();
+
 			message.setJMSReplyTo(responseQueue);
 			producer.send(requestQueue, message);
+			System.out.println("ReplyTo :" + message.getJMSReplyTo().toString());
 
 			JMSConsumer consumer = jmsContext.createConsumer(requestQueue);
 			TextMessage receive = (TextMessage) consumer.receive();
 			System.out.println("Message received: " + receive.getText());
+			System.out.println("ReplyTo :" + receive.getJMSReplyTo().toString());
 
 			JMSProducer responseProducer = jmsContext.createProducer();
-			responseProducer.send(responseQueue, "You are awsome!!");
+			responseProducer.send(receive.getJMSReplyTo(), "You are awsome!!");
 
 			JMSConsumer responseConsumer = jmsContext.createConsumer(responseQueue);
 			System.out.println("Message received: " + responseConsumer.receiveBody(String.class));
