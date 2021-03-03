@@ -8,7 +8,7 @@ import javax.naming.InitialContext;
 
 import org.apache.activemq.artemis.jms.client.ActiveMQConnectionFactory;
 
-public class MessageExpirationDemo {
+public class MessageDelayDemo {
 	public static void main(String[] args) throws Exception {
 		InitialContext context = new InitialContext();
 		Queue queue = (Queue) context.lookup("queue/myQueue");
@@ -17,12 +17,11 @@ public class MessageExpirationDemo {
 				JMSContext jmsContext = cf.createContext()) {
 
 			JMSProducer producer = jmsContext.createProducer();
-			producer.setTimeToLive(2000);
+			producer.setDeliveryDelay(3000);
 			producer.send(queue, "Toddy é o melhor");
-			Thread.sleep(5000);
 
 			Message received = jmsContext.createConsumer(queue).receive(5000);
-			System.out.println("Message received: " + received);
+			System.out.println("Message received: " + received.toString());
 		}
 	}
 }
