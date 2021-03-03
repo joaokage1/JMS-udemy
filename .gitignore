@@ -4,3 +4,4 @@ toddyjms/.classpath
 toddyjms/target/classes/META-INF/maven/com.toddy.jms/toddyjms/pom.properties
 toddyjms/target/classes/META-INF/maven/com.toddy.jms/toddyjms/pom.properties
 *.properties
+toddyjms/target/classes/toddyjms/messagestructure/MessageTypesDemo.class

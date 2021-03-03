@@ -1,6 +1,5 @@
 package toddyjms.messagestructure;
 
-import javax.jms.BytesMessage;
 import javax.jms.JMSContext;
 import javax.jms.JMSProducer;
 import javax.jms.Queue;
@@ -19,15 +18,16 @@ public class MessageTypesDemo {
 
 			JMSProducer producer = jmsContext.createProducer();
 			// TextMessage body = jmsContext.createTextMessage("Toddy é o melhor");
-			BytesMessage bytesMessage = jmsContext.createBytesMessage();
-			bytesMessage.writeUTF("John");
-			bytesMessage.writeLong(123l);
+			// BytesMessage bytesMessage = jmsContext.createBytesMessage();
+			// bytesMessage.writeUTF("John");
+			// bytesMessage.writeLong(123l);
 
-			producer.send(queue, bytesMessage);
+			// producer.send(queue, bytesMessage);
 
-			BytesMessage received = (BytesMessage) jmsContext.createConsumer(queue).receive(5000);
-			System.out.println("Message received: " + received.readUTF());
-			System.out.println("Message received: " + received.readLong());
+			// BytesMessage received = (BytesMessage)
+			// jmsContext.createConsumer(queue).receive(5000);
+			// System.out.println("Message received: " + received.readUTF());
+			// System.out.println("Message received: " + received.readLong());
 
 			StreamMessage streamMessage = jmsContext.createStreamMessage();
 			streamMessage.writeBoolean(true);
