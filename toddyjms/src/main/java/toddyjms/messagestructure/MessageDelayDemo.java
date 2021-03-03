@@ -1,4 +1,4 @@
-package toddyjms.basics;
+package toddyjms.messagestructure;
 
 import javax.jms.JMSContext;
 import javax.jms.JMSProducer;
